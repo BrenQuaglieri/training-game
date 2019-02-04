@@ -1,0 +1,16 @@
+{
+    "name": "mint/game-prototype-training",
+    "description": "game prototype for training",
+    "authors": [
+        {
+            "name": "Bren Quaglieri",
+            "email": "brendan.j.quaglieri@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^3.4"
+    },
+    "autoload": {
+        "psr-4": { "PrototypeGame\\":"src/" }
+    }
+}
