@@ -38,6 +38,7 @@ class Heroes extends Characters {
         echo '<li> damages = ' . $this->dmg . '</li>';
         echo '<li> dodge chances = ' . $this->dodge . '</li>';
         echo '<li> heal = ' . $this->heal . '</li>';
+        echo '<li> Statut = ' . $this->status . '</li>';
     }
     public function howMuchPv() {
         echo '<br>' . $this->name . ' : ' . $this->pv . ' PVs restants';
@@ -45,12 +46,27 @@ class Heroes extends Characters {
     public function hit($target) {
 
         $dodgeChance = rand(0, 100);
-        if ($dodgeChance <= $this->dodge) {
+        if ($dodgeChance <= $target->dodge && $target->status = 'Vivant') {
             echo '<p>' . $this->name . ' rate son coup et n\'inflige aucun dégat à ' . $target->name . ' !</p>';
         }
         else {
-            $target->pv = $target->pv - $this->dmg;
-            echo '<p>'. $this->name .' tape et inflige ' . $this->dmg . ' dommages à ' . $target->name . ' !';
+            if ($target->pv > 0) {
+                $target->pv = $target->pv - $this->dmg;
+                echo '<p>'. $this->name .' tape et inflige ' . $this->dmg . ' dommages à ' . $target->name . ' !';
+                if ($target->pv > 0) {
+                echo '<br>' . $target->name . ' : ' . $target->pv . ' PVs restants';
+                }
+                else {
+                    echo '<p>' . $target->name . ' : ' . '0 PVs restants';
+                }
+            }
+            else if ($target->status == 'Mort') {
+                echo '<p>' . $target->name . ' est déjà mort ! </p>';
+            }
+            else if ($target->pv <= 0) {
+                $target->status = 'Mort';
+                echo '<p>'. $this->name . ' a tué ' . $target->name . ' !</p>';
+            }
         }
     }
     public function heal($target) {
