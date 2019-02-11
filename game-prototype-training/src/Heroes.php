@@ -46,7 +46,7 @@ class Heroes extends Characters {
     public function hit($target) {
 
         $dodgeChance = rand(0, 100);
-        if ($dodgeChance <= $target->dodge && $target->status = 'Vivant') {
+        if ($dodgeChance <= $target->dodge && $target->status == 'Vivant') {
             echo '<p>' . $this->name . ' rate son coup et n\'inflige aucun dégat à ' . $target->name . ' !</p>';
         }
         else {
@@ -54,24 +54,29 @@ class Heroes extends Characters {
                 $target->pv = $target->pv - $this->dmg;
                 echo '<p>'. $this->name .' tape et inflige ' . $this->dmg . ' dommages à ' . $target->name . ' !';
                 if ($target->pv > 0) {
-                echo '<br>' . $target->name . ' : ' . $target->pv . ' PVs restants';
+                    $target->howMuchPV();
                 }
                 else {
                     echo '<p>' . $target->name . ' : ' . '0 PVs restants';
+                    $target->pv = 0;
+                    $target->status = 'Mort';
+                    echo '<p>'. $this->name . ' a tué ' . $target->name . ' !</p>';
+                    return $target->status;
                 }
             }
             else if ($target->status == 'Mort') {
                 echo '<p>' . $target->name . ' est déjà mort ! </p>';
             }
-            else if ($target->pv <= 0) {
-                $target->status = 'Mort';
-                echo '<p>'. $this->name . ' a tué ' . $target->name . ' !</p>';
-            }
         }
     }
     public function heal($target) {
-        $target->pv = $target->pv + $this->heal;
-        echo '<p>'. $this->name .' soigne ' . $target->name . ' de ' . $this->heal . ' points de vie !';
+        if ($target->status == 'Vivant') {
+            $target->pv = $target->pv + $this->heal;
+            echo '<p>'. $this->name .' soigne ' . $target->name . ' de ' . $this->heal . ' points de vie !';
+        }
+        else if ($target->status == 'Mort') {
+            echo '<p>'. $target->name .' est mort et ne peut être soigné ! </p>';    
+        }
     }
 }
 

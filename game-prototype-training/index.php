@@ -19,16 +19,12 @@ $mage->showStats();
 $soigneur->showStats();
 echo '<h2> Tour 1 </h3>';
 $guerrier->hit($voleur);
-$voleur->howMuchPv();
 $voleur->hit($guerrier);
-$guerrier->howMuchPv();
 $soigneur->heal($guerrier);
-$guerrier->howMuchPv();
 $mage->hit($soigneur);
-$soigneur->howMuchPv();
 echo '<h2> Fin du Tour 1 </h2>';
 $guerrier->hit($voleur);
 $guerrier->hit($voleur);
 $guerrier->hit($voleur);
-$guerrier->hit($voleur);
-
+$soigneur->heal($voleur);
+$voleur->showStats();
