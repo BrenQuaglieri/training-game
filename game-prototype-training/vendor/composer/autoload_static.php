@@ -17,9 +17,9 @@ class ComposerStaticInitaea3596a7ef250a2fdfa3f8a44d93668
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\VarDumper\\' => 28,
         ),
-        'P' => 
+        'M' => 
         array (
-            'PrototypeGame\\' => 14,
+            'MyApp\\' => 6,
         ),
     );
 
@@ -32,9 +32,9 @@ class ComposerStaticInitaea3596a7ef250a2fdfa3f8a44d93668
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
         ),
-        'PrototypeGame\\' => 
+        'MyApp\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 

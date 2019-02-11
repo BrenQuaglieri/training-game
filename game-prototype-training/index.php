@@ -2,29 +2,48 @@
 
 require 'vendor/autoload.php';
 
-use PrototypeGame\Heroes;
+use MyApp\Characters\Heroes;
 
-$guerrier = new Heroes('FénixOfRaj', 'Tank', 40, 2, 8);
-$voleur = new Heroes('Datzeboykid', 'dps', 5, 45, 0);
-$mage = new Heroes('Mouwfawck', 'dps', 20, 30, 0);
-$soigneur = new Heroes('GreyStone', 'healer', 10, 0, 40);
+$path = $_GET['path'] ?? '/';
 
-$guerrier->convertStats();
-$voleur->convertStats();
-$mage->convertStats();
-$soigneur->convertStats();
-$guerrier->showStats();
-$voleur->showStats();
-$mage->showStats();
-$soigneur->showStats();
+echo $path . '<br>';
+
+$router = new MyApp\FrontController\Router();
+$router->addRoute('/', 'plateau');
+$router->addRoute('/terra', 'terra');
+$router->addRoute('/aqua', 'aqua');
+$router->addRoute('/ventus', 'ventus');
+
+print_R($router->getRoutes());
+
+
+
+
+
+
+
+
+
+
+
+
+
+$terra = new Heroes('Terra', 'Keyblade\' master', 40, 2, 8);
+$ventus = new Heroes('Ventus', 'Keyblade\'s master', 2, 45, 3);
+$aqua = new Heroes('Aqua', 'Keyblade\'s master', 0, 15, 35);
+
+$terra->convertStats();
+$ventus->convertStats();
+$aqua->convertStats();
+$terra->showStats();
+$ventus->showStats();
+$aqua->showStats();
 echo '<h2> Tour 1 </h3>';
-$guerrier->hit($voleur);
-$voleur->hit($guerrier);
-$soigneur->heal($guerrier);
-$mage->hit($soigneur);
+$terra->hit($ventus);
+$ventus->hit($terra);
+$aqua->heal($ventus);
 echo '<h2> Fin du Tour 1 </h2>';
-$guerrier->hit($voleur);
-$guerrier->hit($voleur);
-$guerrier->hit($voleur);
-$soigneur->heal($voleur);
-$voleur->showStats();
+$terra->hit($ventus);
+$terra->hit($ventus);
+$terra->hit($ventus);
+$aqua->heal($ventus);
