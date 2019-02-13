@@ -15,14 +15,17 @@ class Router
     {
         $routeArray = [
             'route' => $route,
-            'cible' => $target,
+            'target' => $target,
         ];
-        $this->routes[] = $routeArray;
+        $this->routes[$route] = $routeArray;
     }
 
-    public function match()
+    public function match(string $url)
     {
-
+        if (!isset($this->routes[$url])) {
+            return false;
+        }
+        return $this->routes[$url];
     }
 
 

@@ -11,6 +11,7 @@ class Heroes extends Characters {
     private $str;
     private $dxt;
     private $int;
+    private $style;
 
     public function __construct($name, $role, $str, $dxt, $int, ...$data)
     {
@@ -25,22 +26,42 @@ class Heroes extends Characters {
     }
     public function convertStats() 
     {
-        $this->pv = intval($this->pv + $this->str * 4);
-        $this->pv = intval($this->pv + $this->int * 2);
-        $this->dmg = intval($this->dmg + $this->str * 2);
-        $this->dmg = intval($this->dmg + $this->dxt * 2.5);
-        $this->dmg = intval($this->dmg + $this->int * 1.5);
-        $this->dodge = intval($this->dodge + $this->dxt * 0.4);
-        $this->heal = intval($this->heal + $this->int * 1.25);
+        $this->pv = intval($this->pv + $this->str * 5.6);
+        $this->pv = intval($this->pv + $this->dxt * 1.4);
+        $this->pv = intval($this->pv + $this->int * 2.8);
+        $this->dmg = intval($this->dmg + $this->str * 1.4);
+        $this->dmg = intval($this->dmg + $this->dxt * 1.6);
+        $this->dmg = intval($this->dmg + $this->int * 1.2);
+        $this->dodge = intval($this->dodge + $this->dxt * 0.6);
+        $this->heal = intval($this->heal + $this->int * 1.2);
+
+        if ($this->str > $this->dxt && $this->int) 
+        {
+            $this->style = 'ma force';
+        }
+        else if ($this->dxt > $this->str && $this->int) 
+        {
+            $this->style = 'ma vivacité';
+        }
+        else if ($this->int > $this->str && $this->dxt) 
+        {
+            $this->style = 'ma magie et mon soin';
+        }
     }
     public function showStats()
     {
-        echo '<h4>' . $this->name . '</h4>';
+        echo '<h4><a href="'.strtolower($this->name).'">' . $this->name . '</a></h4>';
         echo '<li> pv = ' . $this->pv . '</li>';
+        echo '<li> Statut = ' . $this->status . '</li>';
+    }
+    public function characterProfile()
+    {
+        echo '<h4>'. $this->name . '</h4>';
         echo '<li> damages = ' . $this->dmg . '</li>';
         echo '<li> dodge chances = ' . $this->dodge . '</li>';
         echo '<li> heal = ' . $this->heal . '</li>';
         echo '<li> Statut = ' . $this->status . '</li>';
+        echo '<p> Je m\'appelle '. $this->name. ' ! je base mes combats sur '.$this->style.' !';
     }
     public function howMuchPv()
     {
