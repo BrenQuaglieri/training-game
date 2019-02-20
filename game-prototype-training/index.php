@@ -11,7 +11,8 @@ $aqua = new Heroes('Aqua', 'Keyblade\'s master', 5, 5, 40);
 $terra->convertStats();
 $ventus->convertStats();
 $aqua->convertStats();
-$terra->showStats();
+/*$terra->showStats();
+$terra->characterProfile();
 $ventus->showStats();
 $aqua->showStats();
 echo '<h2> Tour 1 </h3>';
@@ -22,7 +23,7 @@ echo '<h2> Fin du Tour 1 </h2>';
 $terra->hit($ventus);
 $terra->hit($ventus);
 $terra->hit($ventus);
-$aqua->heal($ventus);
+$aqua->heal($ventus);*/
 
 $path = $_GET['path'] ?? '/';
 

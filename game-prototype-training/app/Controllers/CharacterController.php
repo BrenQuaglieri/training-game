@@ -2,18 +2,18 @@
 
 namespace MyApp\Controllers;
 
-class CharacterController 
+class CharacterController extends Controller
 {
     public function terraProfile()
     {
-        echo 'voici le profil de Terra';
+        $this->includeTemplate('character-terra');
     }
     public function ventusProfile()
     {
-        echo 'voici le profil de Ventus';
+        $this->includeTemplate('character-ventus');
     }
     public function aquaProfile()
     {
-        echo 'voici le Profil de Aqua';
+        $this->includeTemplate('character-aqua');
     }
 }
